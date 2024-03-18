@@ -1,152 +1,108 @@
-> **免责声明：**
+**Disclaimer:**
 
->本仓库的所有内容仅供学习和参考之用，禁止用于商业用途。任何人或组织不得将本仓库的内容用于非法用途或侵犯他人合法权益。本仓库所涉及的爬虫技术仅用于学习和研究，不得用于对其他平台进行大规模爬虫或其他非法行为。对于因使用本仓库内容而引起的任何法律责任，本仓库不承担任何责任。使用本仓库的内容即表示您同意本免责声明的所有条款和条件。
+All content in this repository is for learning and reference only and is prohibited for commercial use. No individual or organization may use the content of this repository for illegal purposes or infringe upon the legitimate rights and interests of others. The web crawling technology involved in this repository is only for learning and research purposes and may not be used for large-scale web crawling or other illegal activities on other platforms. This repository shall not be held liable for any legal liability arising from the use of its content. The use of the content in this repository implies that you agree to all the terms and conditions of this disclaimer.
 
-# 仓库描述
+# Repository Description
 
-**小红书爬虫**，**抖音爬虫**， **快手爬虫**， **B站爬虫**， **微博爬虫**...。  
-目前能抓取小红书、抖音、快手、B站、微博的视频、图片、评论、点赞、转发等信息。
+**Xiaohongshu Crawler**, **Douyin Crawler**, **Kuaishou Crawler**, **Bilibili Crawler**, **Weibo Crawler**...  
+Currently capable of fetching videos, images, comments, likes, and reposts from Xiaohongshu, Douyin, Kuaishou, Bilibili, and Weibo.
 
-原理：利用[playwright](https://playwright.dev/)搭桥，保留登录成功后的上下文浏览器环境，通过执行JS表达式获取一些加密参数
-通过使用此方式，免去了复现核心加密JS代码，逆向难度大大降低  
+Principle: Using [playwright](https://playwright.dev/) to build a bridge, retaining the context browser environment after successful login, and obtaining some encrypted parameters by executing JS expressions. This approach eliminates the need to reproduce core encrypted JS code, greatly reducing the difficulty of reverse engineering.
 
-爬虫技术交流群：[949715256](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=NFz-oY7Pek3gpG5zbLJFHARlB8lKL94f&authKey=FlxIQK99Uu90wddNV5W%2FBga6T6lXU5BRqyTTc26f2P2ZK5OW%2BDhHp7MwviX%2BbrPa&noverify=0&group_code=949715256)，同时欢迎大家贡献代码提交PR
+Crawler technology exchange group: [949715256](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=NFz-oY7Pek3gpG5zbLJFHARlB8lKL94f&authKey=FlxIQK99Uu90wddNV5W%2FBga6T6lXU5BRqyTTc26f2P2ZK5OW%2BDhHp7MwviX%2BbrPa&noverify=0&group_code=949715256), welcome everyone to contribute code and submit PRs.
 
-视频配置教程：[MediaCrawler视频入门教程](https://space.bilibili.com/434377496/channel/series)
+Video configuration tutorial: [MediaCrawler Video Tutorial](https://space.bilibili.com/434377496/channel/series)
 
-## 感谢下列Sponsors对本仓库赞助
-<a href="https://dashboard.ipcola.com/register?referral_code=vkybwyucyuidpne">全球ip代理超新星</a>
-<a href="https://dashboard.ipcola.com/register?referral_code=vkybwyucyuidpne" target="_blank"><img src="https://s2.loli.net/2024/03/18/LKJaWcIHQl92ip5.jpg" alt="IPCola,  全球ip代理超新星-官网图"></a>
-
-
-成为赞助者，展示你的产品在这里，联系作者：relakkes@gmail.com
-
-## 功能列表
-| 平台  | Cookie 登录 | 二维码登录 | 指定创作者主页 | 关键词搜索 | 指定视频/帖子 ID 爬取 | 登录状态缓存 | 数据保存 | IP 代理池 | 滑块验证码 |
-|:---:|:---------:|:-----:|:-------:|:-----:|:-------------:|:------:|:----:|:------:|:-----:|
-| 小红书 |     ✅     |   ✅   |    ✅    |   ✅   |       ✅       |   ✅    |  ✅   |   ✅    |   ✕   |
-| 抖音  |     ✅     |   ✅   |    ✕     |   ✅   |       ✅       |   ✅    |  ✅   |   ✅    |   ✅   |
-| 快手  |     ✅     |   ✅   |    ✕    |   ✅   |       ✅       |   ✅    |  ✅   |   ✅    |    ✕   |
-| B 站 |     ✅     |   ✅   |    ✕    |   ✅   |       ✅       |   ✅    |  ✅   |   ✅    |   ✕   |
-| 微博  |     ✅      |   ✅    |    ✕    |   ✅    |       ✅        |    ✅    |   ✅   |    ✅    |   ✕   |
+## Thanks to the following sponsors for sponsoring this repository
+<a href="https://dashboard.ipcola.com/register?referral_code=vkybwyucyuidpne">Global IP Proxy Supernova</a>
+<a href="https://dashboard.ipcola.com/register?referral_code=vkybwyucyuidpne" target="_blank"><img src="https://s2.loli.net/2024/03/18/LKJaWcIHQl92ip5.jpg" alt="IPCola, Global IP Proxy Supernova - Official Website"></a>
 
 
-## 使用方法
+Become a sponsor and showcase your product here. Contact the author: relakkes@gmail.com
 
-### 创建并激活 python 虚拟环境
+## Feature List
+| Platform | Cookie Login | QR Code Login | Specify Creator Homepage | Keyword Search | Specify Video/Post ID Crawling | Login State Cache | Data Saving | IP Proxy Pool | Slider Captcha |
+|:--------:|:------------:|:-------------:|:------------------------:|:--------------:|:----------------------------:|:------------------:|:-----------:|:-------------:|:--------------:|
+| Xiaohongshu |      ✅      |       ✅       |            ✅            |       ✅        |              ✅              |         ✅         |      ✅      |       ✅       |       ❌       |
+| Douyin   |      ✅      |       ✅       |            ❌            |       ✅        |              ✅              |         ✅         |      ✅      |       ✅       |       ✅       |
+| Kuaishou |      ✅      |       ✅       |            ❌            |       ✅        |              ✅              |         ✅         |      ✅      |       ✅       |       ❌       |
+| Bilibili |      ✅      |       ✅       |            ❌            |       ✅        |              ✅              |         ✅         |      ✅      |       ✅       |       ❌       |
+| Weibo    |      ✅       |       ✅        |            ❌            |       ✅         |              ✅               |          ✅          |       ✅      |        ✅        |        ❌        |
+
+
+## Usage
+
+### Create and activate a Python virtual environment
    ```shell   
-   # 进入项目根目录
+   # Go to the project root directory
    cd MediaCrawler
    
-   # 创建虚拟环境
+   # Create a virtual environment
    python -m venv venv
    
-   # macos & linux 激活虚拟环境
+   # Activate the virtual environment on macOS & Linux
    source venv/bin/activate
 
-   # windows 激活虚拟环境
+   # Activate the virtual environment on Windows
    venv\Scripts\activate
 
    ```
 
-### 安装依赖库
+### Install dependencies
 
    ```shell
    pip3 install -r requirements.txt
    ```
 
-### 安装 playwright浏览器驱动
+### Install playwright browser driver
 
    ```shell
    playwright install
    ```
 
-### 运行爬虫程序
+### Run the crawler program
 
    ```shell
-   # 默认没有开启评论爬取模式，有需要请到配置文件中指定
-   # 从配置文件中读取关键词搜索相关的帖子并爬去帖子信息与评论
+   # Comment crawling mode is not enabled by default. If needed, please specify in the configuration file.
+   # Fetch post information and comments based on keyword searches from the configuration file
    python main.py --platform xhs --lt qrcode --type search
    
-   # 从配置文件中读取指定的帖子ID列表获取指定帖子的信息与评论信息
+   # Fetch information and comments of specified posts based on post IDs from the configuration file
    python main.py --platform xhs --lt qrcode --type detail
   
-   # 打开对应APP扫二维码登录
+   # Open the corresponding app to scan the QR code for login
      
-   # 其他平台爬虫使用示例, 执行下面的命令查看
+   # Example of using crawlers for other platforms, run the following command to check
    python main.py --help    
    ```
 
 
-### 数据保存
-- 支持保存到关系型数据库（Mysql、PgSQL等）
-- 支持保存到csv中（data/目录下）
-- 支持保存到json中（data/目录下）
+### Data saving
+- Supports saving to relational databases (MySQL, PostgreSQL, etc.)
+- Supports saving to CSV (in the data/ directory)
+- Supports saving to JSON (in the data/ directory)
 
-## 打赏
+## Donation
 
-如果觉得项目不错的话可以打赏哦。您的支持就是我最大的动力！
+If you find the project helpful, feel free to donate. Your support is my greatest motivation!
 
-打赏时您可以备注名称，我会将您添加至打赏列表中。
+When donating, you can include your name as a note, and I will add you to the donation list.
 <p>
-  <img alt="打赏-微信" src="static/images/wechat_pay.jpeg" style="width: 200px;margin-right: 140px;" />
-  <img alt="打赏-支付宝" src="static/images/zfb_pay.jpeg" style="width: 200px" />
+  <img alt="WeChat Pay" src="static/images/wechat_pay.jpeg" style="width: 200px;margin-right: 140px;" />
+  <img alt="Alipay" src="static/images/zfb_pay.jpeg" style="width: 200px" />
 </p>
 
-## 捐赠信息
+## Donation Information
 
-PS：如果打赏时请备注捐赠者，如有遗漏请联系我添加（有时候消息多可能会漏掉，十分抱歉）
+PS: If you make a donation, please include your name as a note. If there are omissions, please contact me to add them (sometimes messages may be overlooked due to a large number of them, I apologize).
 
-| 捐赠者         | 捐赠金额  | 捐赠日期       |
+| Donor         | Amount  | Date       |
 |-------------|-------|------------|
-| Tsen Ming   | 100 元 | 2024-03-18 |
-| *皓          | 50 元  | 2024-03-18 |
-| *刚          | 50 元  | 2024-03-18 |
-| *乐          | 20 元  | 2024-03-17 |
-| *木          | 20 元  | 2024-03-17 |
-| *诚          | 20 元  | 2024-03-17 |
-| Strem Gamer | 20 元  | 2024-03-16 |
-| *鑫          | 20 元  | 2024-03-14 |
-| Yuzu        | 20 元  | 2024-03-07 |
-| **宁         | 100 元 | 2024-03-03 |
-| **媛         | 20 元  | 2024-03-03 |
-| Scarlett    | 20 元  | 2024-02-16 |
-| Asun        | 20 元  | 2024-01-30 |
-| 何*          | 100 元 | 2024-01-21 |
-| allen       | 20 元  | 2024-01-10 |
-| llllll      | 20 元  | 2024-01-07 |
-| 邝*元         | 20 元  | 2023-12-29 |
-| 50chen      | 50 元  | 2023-12-22 |
-| xiongot     | 20 元  | 2023-12-17 |
-| atom.hu     | 20 元  | 2023-12-16 |
-| 一呆          | 20 元  | 2023-12-01 |
-| 坠落          | 50 元  | 2023-11-08 |
-
-## 运行报错常见问题Q&A
-> 遇到问题先自行搜索解决下，现在AI很火，用ChatGPT大多情况下能解决你的问题  
-
-➡️➡️➡️ [常见问题](docs/常见问题.md)
-
-
-## 项目代码结构
-➡️➡️➡️ [项目代码结构说明](docs/项目代码结构.md)
-
-## 手机号登录说明
-➡️➡️➡️ [手机号登录说明](docs/手机号登录说明.md)
-
-
-
-## star 趋势图
-- 如果该项目对你有帮助，star一下 ❤️❤️❤️
-
-[![Star History Chart](https://api.star-history.com/svg?repos=NanmiCoder/MediaCrawler&type=Date)](https://star-history.com/#NanmiCoder/MediaCrawler&Date)
-
-
-
-
-## 参考
-
-- xhs客户端 [ReaJason的xhs仓库](https://github.com/ReaJason/xhs)
-- 短信转发 [参考仓库](https://github.com/pppscn/SmsForwarder)
-- 内网穿透工具 [ngrok](https://ngrok.com/docs/)
-
+| Tsen Ming   | 100 CNY | 2024-03-18 |
+| *Hao          | 50 CNY  | 2024-03-18 |
+| *Gang          | 50 CNY  | 2024-03-18 |
+| *Le          | 20 CNY  | 2024-03-17 |
+| *Mu          | 20 CNY  | 2024-03-17 |
+| *Cheng          | 20 CNY  | 2024-03-17 |
+| Strem Gamer | 20 CNY  | 2024-03-16 |
+| *Xin          | 20 CNY  | 2024-03
